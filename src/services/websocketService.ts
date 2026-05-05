@@ -22,7 +22,7 @@ class WebSocketService {
         console.log('Déconnecté du WebSocket')
       })
 
-      this.socket.on('connect_error', (error: any) => {
+      this.socket.on('connect_error', (error) => {
         console.error('Erreur de connexion WebSocket:', error)
         reject(error)
       })
