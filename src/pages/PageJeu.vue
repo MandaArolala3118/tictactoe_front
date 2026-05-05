@@ -21,7 +21,7 @@
           <div class="player" :class="{ active: game?.current_turn === 'X', current: currentUser?.id === game?.player_x_id }">
             <div class="player-avatar">X</div>
             <div class="player-info">
-              <span class="player-name">{{ getPlayerName(game?.player_x_id) }}</span>
+              <span class="player-name">{{ getPlayerName(game?.player_x_id || null) }}</span>
               <span class="player-symbol">Joueur X</span>
             </div>
           </div>
@@ -31,7 +31,7 @@
           <div class="player" :class="{ active: game?.current_turn === 'O', current: currentUser?.id === game?.player_o_id }">
             <div class="player-avatar">O</div>
             <div class="player-info">
-              <span class="player-name">{{ getPlayerName(game?.player_o_id) }}</span>
+              <span class="player-name">{{ getPlayerName(game?.player_o_id || null) }}</span>
               <span class="player-symbol">Joueur O</span>
             </div>
           </div>
@@ -130,7 +130,7 @@ const showEndModal = ref(false);
 const winningCells = ref<number[] | null>(null);
 
 // Intervalle pour rafraîchir le jeu
-let refreshInterval: NodeJS.Timeout | null = null;
+let refreshInterval: number | null = null;
 
 // Computed
 const canPlay = computed(() => {

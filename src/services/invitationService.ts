@@ -1,4 +1,4 @@
-import type { Invitation, CreateInvitationRequest, InvitationFilters } from '../models';
+import type { Invitation, CreateInvitationRequest } from '../models';
 import { InvitationModel } from '../models';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

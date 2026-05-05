@@ -127,9 +127,7 @@ const {
   shaking,
   bgSymbols,
   validateField,
-  validateAll,
   submit,
-  triggerShake
 } = useLoginMain(emit)
 </script>
 

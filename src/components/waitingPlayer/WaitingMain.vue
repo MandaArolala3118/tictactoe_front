@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import MainMenu from './MainMenu/MainMenu.vue'
 import JoinGame from './JoinGame/JoinGame.vue'
 import CreateGame from './CreateGame/CreateGame.vue'
@@ -68,15 +68,15 @@ const emit = defineEmits(['cancel', 'expired', 'invite', 'join'])
 
 // ── Timer ─────────────────────────────────────────────
 const remaining = ref(props.duration)
-const CIRC = 2 * Math.PI * 34 // ~213.6
 
-const hours   = computed(() => String(Math.floor(remaining.value / 3600)).padStart(2, '0'))
-const minutes = computed(() => String(Math.floor((remaining.value % 3600) / 60)).padStart(2, '0'))
-const seconds = computed(() => String(remaining.value % 60).padStart(2, '0'))
-
-const progressPercent = computed(() => (remaining.value / props.duration) * 100)
-const progressOffset  = computed(() => CIRC * (1 - remaining.value / props.duration))
-const isUrgent        = computed(() => remaining.value <= 300) // 5 dernières minutes
+// Variables calculées pour le timer (non utilisées dans le template actuel)
+// const hours   = computed(() => String(Math.floor(remaining.value / 3600)).padStart(2, '0'))
+// const minutes = computed(() => String(Math.floor((remaining.value % 3600) / 60)).padStart(2, '0'))
+// const seconds = computed(() => String(remaining.value % 60).padStart(2, '0'))
+// const progressPercent = computed(() => (remaining.value / props.duration) * 100)
+// const progressOffset  = computed(() => (1 - remaining.value / props.duration))
+// const progressOffset  = computed(() => CIRC * (1 - remaining.value / props.duration))
+// const isUrgent        = computed(() => remaining.value <= 300) // 5 dernières minutes
 
 let interval: number | null = null
 
@@ -96,12 +96,12 @@ onUnmounted(() => {
 })
 
 // ── Copier le code ────────────────────────────────────
-const copied = ref(false)
-function copyCode() {
-  navigator.clipboard?.writeText(props.roomCode)
-  copied.value = true
-  setTimeout(() => { copied.value = false }, 2000)
-}
+// const copied = ref(false)
+// function copyCode() {
+//   navigator.clipboard?.writeText(props.roomCode)
+//   copied.value = true
+//   setTimeout(() => { copied.value = false }, 2000)
+// }
 
 // ── Gestion des vues ───────────────────────────────────
 type ViewMode = 'menu' | 'join' | 'create'

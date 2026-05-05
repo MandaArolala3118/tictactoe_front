@@ -7,9 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { UserModel } from '../models';
 import UserService from '../services/userService';
 import LoginMain from '../components/connexion/LoginMain.vue';
 
