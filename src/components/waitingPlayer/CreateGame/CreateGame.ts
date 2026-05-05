@@ -28,7 +28,7 @@ export function useCreateGame(props: CreateGameProps, emit: CreateGameEmits) {
   const progressOffset = computed(() => CIRC * (1 - remaining.value / duration))
   const isUrgent = computed(() => remaining.value <= 300) // 5 dernières minutes
 
-  let interval: number | null = null
+  let interval: NodeJS.Timeout | null = null
 
   function startTimer() {
     if (interval) return

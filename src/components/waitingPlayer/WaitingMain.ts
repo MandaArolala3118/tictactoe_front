@@ -21,7 +21,7 @@ const progressPercent = computed(() => (remaining.value / props.duration) * 100)
 const progressOffset  = computed(() => CIRC * (1 - remaining.value / props.duration))
 const isUrgent        = computed(() => remaining.value <= 300) // 5 dernières minutes
 
-let interval: number | null = null
+let interval: NodeJS.Timeout | null = null
 
 onMounted(() => {
   interval = setInterval(() => {

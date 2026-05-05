@@ -256,11 +256,7 @@ const {
 
   validateField,
 
-  validateAll,
-
-  submit,
-
-  triggerShake
+  submit
 
 } = useLoginMain(emit)
 

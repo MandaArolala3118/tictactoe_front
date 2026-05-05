@@ -138,8 +138,6 @@ const emit = defineEmits(['cancel', 'expired', 'invite', 'join'])
 
 const remaining = ref(props.duration)
 
-const CIRC = 2 * Math.PI * 34 // ~213.6
-
 
 
 const hours   = computed(() => String(Math.floor(remaining.value / 3600)).padStart(2, '0'))
@@ -152,13 +150,13 @@ const seconds = computed(() => String(remaining.value % 60).padStart(2, '0'))
 
 const progressPercent = computed(() => (remaining.value / props.duration) * 100)
 
-const progressOffset  = computed(() => CIRC * (1 - remaining.value / props.duration))
+const progressOffset  = computed(() => 2 * Math.PI * 34 * (1 - remaining.value / props.duration))
 
 const isUrgent        = computed(() => remaining.value <= 300) // 5 dernières minutes
 
 
 
-let interval: number | null = null
+let interval: NodeJS.Timeout | null = null
 
 
 
@@ -189,22 +187,6 @@ onUnmounted(() => {
   if (interval) clearInterval(interval)
 
 })
-
-
-
-// ── Copier le code ────────────────────────────────────
-
-const copied = ref(false)
-
-function copyCode() {
-
-  navigator.clipboard?.writeText(props.roomCode)
-
-  copied.value = true
-
-  setTimeout(() => { copied.value = false }, 2000)
-
-}
 
 
 
